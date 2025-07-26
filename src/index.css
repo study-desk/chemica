@@ -1,0 +1,287 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Periodic Table Glassmorphism Design System */
+
+@layer base {
+  :root {
+    /* Background */
+    --background: 235 39% 5%;
+    --foreground: 210 40% 98%;
+
+    /* Glassmorphism card */
+    --card: 235 39% 10%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 235 39% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Primary theme */
+    --primary: 200 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 235 39% 15%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 235 39% 15%;
+    --muted-foreground: 215.4 16.3% 65%;
+
+    --accent: 200 100% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 235 39% 20%;
+    --input: 235 39% 15%;
+    --ring: 200 100% 50%;
+
+    /* Periodic Table Element Colors */
+    --hydrogen: 201 100% 50%;
+    --alkali-metal: 39 100% 50%;
+    --alkaline-earth: 15 100% 60%;
+    --transition-metal: 270 50% 60%;
+    --post-transition: 120 50% 50%;
+    --metalloid: 60 100% 60%;
+    --nonmetal: 100 100% 50%;
+    --halogen: 180 100% 50%;
+    --noble-gas: 240 100% 70%;
+    --lanthanide: 300 100% 70%;
+    --actinide: 320 100% 60%;
+    --unknown: 0 0% 50%;
+
+    /* Special DK element */
+    --dk-element: 280 100% 60%;
+
+    /* Glassmorphism effects */
+    --glass-bg: 235 39% 10% / 0.1;
+    --glass-border: 210 40% 98% / 0.2;
+    --glass-shadow: 0 8px 32px 0 rgb(31 38 135 / 0.37);
+    --glass-blur: blur(8px);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: linear-gradient(135deg, hsl(var(--background)), hsl(235 39% 8%));
+    min-height: 100vh;
+  }
+
+  /* Glassmorphism utilities */
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  }
+
+  .element-card {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    min-height: 40px;
+    will-change: transform;
+  }
+
+  .element-card:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .element-card-compact {
+    min-height: 28px;
+    font-size: 0.7rem;
+  }
+
+  .element-card-compact .text-lg {
+    font-size: 0.9rem;
+  }
+
+  /* Compact periodic table grid - 50-70% reduction */
+  .periodic-grid {
+    display: grid;
+    grid-template-columns: repeat(18, minmax(20px, 1fr));
+    gap: 1px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .periodic-grid-compact {
+    display: grid;
+    grid-template-columns: repeat(18, minmax(16px, 1fr));
+    gap: 0.5px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .periodic-grid {
+      grid-template-columns: repeat(9, minmax(24px, 1fr));
+      gap: 1px;
+      max-width: 320px;
+    }
+    
+    .periodic-grid-compact {
+      grid-template-columns: repeat(9, minmax(20px, 1fr));
+      gap: 0.5px;
+      max-width: 240px;
+    }
+  }
+
+  /* Game UI enhancements */
+  .game-header {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .achievement-badge {
+    background: linear-gradient(45deg, hsl(39 100% 50%), hsl(45 100% 60%));
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .level-progress {
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)));
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  /* Quiz mode animations */
+  @keyframes pulse-correct {
+    0%, 100% { background-color: hsl(var(--nonmetal)); }
+    50% { background-color: hsl(120 100% 40%); }
+  }
+
+  @keyframes pulse-incorrect {
+    0%, 100% { background-color: hsl(var(--destructive)); }
+    50% { background-color: hsl(0 100% 30%); }
+  }
+
+  .correct-answer {
+    animation: pulse-correct 0.6s ease-in-out;
+  }
+
+  .incorrect-answer {
+    animation: pulse-incorrect 0.6s ease-in-out;
+  }
+
+  /* Score display */
+  .score-display {
+    background: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--accent)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: bold;
+  }
+
+  /* Hearts animation */
+  @keyframes heart-float {
+    0% { 
+      transform: translateY(0) scale(0);
+      opacity: 0;
+    }
+    50% {
+      transform: translateY(-50px) scale(1.2);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100px) scale(0.8);
+      opacity: 0;
+    }
+  }
+
+  /* Celebration animations */
+  @keyframes celebrate {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.1) rotate(5deg); }
+    75% { transform: scale(1.1) rotate(-5deg); }
+  }
+
+  .celebrate {
+    animation: celebrate 0.6s ease-in-out;
+  }
+
+  /* Quiz mode specific animations */
+  @keyframes quiz-correct {
+    0% { background-color: inherit; }
+    50% { background-color: hsl(120 100% 25%); }
+    100% { background-color: inherit; }
+  }
+
+  @keyframes quiz-incorrect {
+    0% { background-color: inherit; }
+    25% { background-color: hsl(0 100% 25%); }
+    50% { background-color: inherit; }
+    75% { background-color: hsl(0 100% 25%); }
+    100% { background-color: inherit; }
+  }
+
+  .quiz-correct {
+    animation: quiz-correct 1s ease-in-out;
+  }
+
+  .quiz-incorrect {
+    animation: quiz-incorrect 1s ease-in-out;
+  }
+}
